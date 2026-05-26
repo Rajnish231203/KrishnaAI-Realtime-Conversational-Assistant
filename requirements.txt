@@ -1,0 +1,45 @@
+# Core dependencies
+streamlit==1.40.2
+python-dotenv==1.0.0
+
+# Audio recording for Streamlit
+audio-recorder-streamlit==0.0.10
+
+# OpenAI SDK (for Whisper STT and TTS)
+openai==1.59.5
+
+# Groq SDK (for fast LLM inference)
+groq==0.13.1
+
+# ElevenLabs SDK (optional, for premium TTS) - Updated to latest stable version
+elevenlabs==2.27.0
+
+# Audio processing
+pydub==0.25.1
+numpy==1.26.4
+scipy==1.13.0
+
+# Web audio support
+pyaudio==0.2.14
+
+# WebSocket server for real-time streaming
+websockets==13.1
+
+# Utility
+requests==2.32.3
+
+# RAG dependencies
+sentence-transformers==2.3.1
+faiss-cpu==1.8.0
+
+# Local STT (FasterWhisper)
+faster-whisper
+ctranslate2
+onnxruntime
+av
+soundfile
+
+# Voice Activity Detection (VAD)
+silero-vad>=5.1.2
+torch
+

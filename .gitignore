@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+.env
+*.log
+node_modules/
+dist/
+build/
+.cache/
+*.db
+*.wav
+*.mp3
+*.jsonl
