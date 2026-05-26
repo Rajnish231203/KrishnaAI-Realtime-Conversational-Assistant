@@ -174,7 +174,7 @@ class Config:
     # SERVER SETTINGS
     # -----------------------------------------------------------------------
 
-    WEBSOCKET_HOST: str = os.getenv("WEBSOCKET_HOST", "localhost")
+    WEBSOCKET_HOST: str = os.getenv("WEBSOCKET_HOST", "0.0.0.0")
     WEBSOCKET_PORT: int = int(os.getenv("WEBSOCKET_PORT", "8766"))
     HTTP_PORT: int = int(os.getenv("HTTP_PORT", "8000"))
 

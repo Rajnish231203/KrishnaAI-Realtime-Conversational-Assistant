@@ -4,6 +4,7 @@ WebSocket server entrypoint for the Krishna Voice Assistant.
 
 import asyncio
 import logging
+import os
 
 import websockets
 from websockets.server import WebSocketServerProtocol
@@ -18,8 +19,8 @@ logger = logging.getLogger("backend.app.core.streaming_server")
 # ---------------------------------------------------------------------------
 # WebSocket server tuning constants
 # ---------------------------------------------------------------------------
-WS_HOST = Config.WEBSOCKET_HOST
-WS_PORT = Config.WEBSOCKET_PORT
+WS_HOST = os.getenv("HOST", Config.WEBSOCKET_HOST)
+WS_PORT = int(os.getenv("PORT", str(Config.WEBSOCKET_PORT)))
 WS_MAX_SIZE = 10_000_000   # 10 MB — accommodates large PCM payloads
 WS_PING_INTERVAL = 20      # seconds between server keepalive pings
 WS_PING_TIMEOUT = 20       # seconds before a non-responsive client is dropped
@@ -110,8 +111,7 @@ async def main() -> None:
         max_queue=WS_MAX_QUEUE,
     ):
         logger.info("Server ready — waiting for connections.")
-        await stop_event.wait()   # Issue 9 (FIXED) — clean run-forever idiom.
-
+        await stop_event.wait()   
 
 if __name__ == "__main__":
     try:
