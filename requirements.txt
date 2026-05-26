@@ -19,8 +19,8 @@ pydub==0.25.1
 numpy==1.26.4
 scipy==1.13.0
 
-# Web audio support
-pyaudio==0.2.14
+# # Web audio support
+# pyaudio==0.2.14
 
 # WebSocket server for real-time streaming
 websockets==13.1
