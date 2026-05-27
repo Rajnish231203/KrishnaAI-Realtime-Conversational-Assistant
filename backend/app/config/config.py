@@ -106,7 +106,7 @@ class Config:
     WHISPER_MODEL: str = os.getenv("WHISPER_MODEL", "whisper-1")
 
     # Local Whisper (FasterWhisper) settings
-    LOCAL_WHISPER_MODEL: str = os.getenv("LOCAL_WHISPER_MODEL", "small")
+    LOCAL_WHISPER_MODEL: str = os.getenv("LOCAL_WHISPER_MODEL", "base")
     WHISPER_DEVICE: str = os.getenv("WHISPER_DEVICE", "cpu")
 
     # Language forced into FasterWhisper for both partial and final transcription.
