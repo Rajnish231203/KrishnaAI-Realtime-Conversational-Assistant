@@ -954,8 +954,10 @@
     <script>
         // Parse optional ws params from URL
         const urlParams = new URLSearchParams(window.location.search);
+        const wsUrlParam = urlParams.get("wsUrl");
         const wsPortParam = urlParams.get("wsPort");
         const wsHostParam = urlParams.get("wsHost");
+        if (wsUrlParam) window.WS_URL = wsUrlParam;
         if (wsPortParam) {
             const parsedPort = Number.parseInt(wsPortParam, 10);
             if (!Number.isNaN(parsedPort)) window.WS_PORT = parsedPort;

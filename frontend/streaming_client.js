@@ -165,11 +165,10 @@ class StreamingVoiceClient {
         this.updateConnectionStatus(statusLabel, false);
         this.updateStatus(`${statusLabel}...`, 'idle');
 
-        const wsHost = window.WS_HOST || window.location.hostname;
-        const wsPort = window.WS_PORT || 8766;
+        const wsUrl = this._resolveWebSocketUrl();
 
         try {
-            this.ws = new WebSocket(`ws://${wsHost}:${wsPort}`);
+            this.ws = new WebSocket(wsUrl);
         } catch (err) {
             // Constructor can throw on invalid URL — schedule retry.
             console.warn('❌ WebSocket constructor failed:', err.message);
@@ -242,6 +241,31 @@ class StreamingVoiceClient {
             this.updateStatus('Reconnecting...', 'idle');
             this._scheduleReconnect();
         };
+    }
+
+    _resolveWebSocketUrl() {
+        if (window.WS_URL) return window.WS_URL;
+
+        const isLocal = this._isLocalhostHost();
+        const wsHost = window.WS_HOST || window.location.hostname;
+
+        if (isLocal) {
+            const wsPort = window.WS_PORT || 8766;
+            return `ws://${wsHost}:${wsPort}`;
+        }
+
+        if (window.WS_HOST || window.WS_PORT) {
+            const wsPort = window.WS_PORT ? `:${window.WS_PORT}` : '';
+            return `wss://${wsHost}${wsPort}`;
+        }
+
+        const prodUrl = window.WS_PROD_URL || 'wss://krishnaai-realtime-conversational-assistant-production.up.railway.app';
+        return prodUrl;
+    }
+
+    _isLocalhostHost() {
+        const host = window.location.hostname;
+        return host === 'localhost' || host === '127.0.0.1';
     }
 
     // ══════════════════════════════════════════════════════════════
